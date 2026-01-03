@@ -1,6 +1,6 @@
+### import necessary libraries
 library(MASS)
 library(parallel)
-library(glmnet)
 library(WeightSVM)
 library(quantoptr)
 
@@ -27,10 +27,7 @@ simulation <- function(l, n, x.test) {
   # estimation of survival function
   dataframe <- data.frame(y = y, x = x[, -1], a = a)
   formula <- as.formula("y ~ x.1 + x.2 + a + I(a * x.1) + I(a * x.2)")
-  xa <- model.matrix(as.formula(formula), dataframe)[, -1]
-  fit.f.y.ax <- glmnet(xa, y, family = binomial(link = "logit"), lambda=0)
-  f.y.ax <- list(fit = fit.f.y.ax, formula = formula)
-  class(f.y.ax) <- "glmnetformula"
+  f.y.ax <- glm(formula = formula, data = dataframe, family = binomial(link = "logit"))
 
   # the propensity score is known as 0.50
   mean.a <- rep(0.5,n)
@@ -55,7 +52,6 @@ simulation <- function(l, n, x.test) {
   regimeClass <- as.formula(paste("a ~", xformula))
   moPropen <- as.formula(a~1)
 
-  # time_9 <- Sys.time()
   res.wang.40 <- IPWE_Qopt(
     data = data.wang, regimeClass = regimeClass, tau = 0.40,
     moPropen = moPropen,
@@ -95,7 +91,7 @@ simulation <- function(l, n, x.test) {
     treat.wang.60 <- x.test %*% res.wang.60$coefficients > 0
   }
   
-  # calculate the misclassification rate for competing methods
+  # calculate the value function for competing methods
   v.SCL.linear.40 <- as.numeric(mean(expit(-0.5+0.5 * x.test[, 2] + 0.5 * x.test[, 3]+ treat.SCL.linear.40*(1.5+1.5*x.test[,2]-1.5*x.test[,3]))-1+ 0.40)>0)
   v.SCL.linear.50 <- as.numeric(mean(expit(-0.5+0.5 * x.test[, 2] + 0.5 * x.test[, 3]+ treat.SCL.linear.50*(1.5+1.5*x.test[,2]-1.5*x.test[,3]))-1+ 0.50)>0)
   v.SCL.linear.60 <- as.numeric(mean(expit(-0.5+0.5 * x.test[, 2] + 0.5 * x.test[, 3]+ treat.SCL.linear.60*(1.5+1.5*x.test[,2]-1.5*x.test[,3]))-1+ 0.60)>0)
@@ -104,10 +100,18 @@ simulation <- function(l, n, x.test) {
   v.wang.50 <- as.numeric(mean(expit(-0.5+0.5 * x.test[, 2] + 0.5 * x.test[, 3]+ treat.wang.50*(1.5+1.5*x.test[,2]-1.5*x.test[,3]))-1+ 0.50)>0)
   v.wang.60 <- as.numeric(mean(expit(-0.5+0.5 * x.test[, 2] + 0.5 * x.test[, 3]+ treat.wang.60*(1.5+1.5*x.test[,2]-1.5*x.test[,3]))-1+ 0.60)>0)
 
+  # calculate hatQ{Y(hat{d})}
+  hatQ.wang.40 <- res.wang.40$hatQ
+  hatQ.wang.50 <- res.wang.50$hatQ
+  hatQ.wang.60 <- res.wang.60$hatQ
+
   return(list(
     v.40 = c(v.SCL.linear.40, v.wang.40),
     v.50 = c(v.SCL.linear.50, v.wang.50),
-    v.60 = c(v.SCL.linear.60, v.wang.60) 
+    v.60 = c(v.SCL.linear.60, v.wang.60),
+    hatQ.wang.40 = hatQ.wang.40,
+    hatQ.wang.50 = hatQ.wang.50,
+    hatQ.wang.60 = hatQ.wang.60
   ))
 }
 
@@ -124,7 +128,7 @@ clusterEvalQ(cl, {
   library(WeightSVM)
   library(quantoptr)
 })
-clusterExport(cl, varlist = list("expit", "SCL.binary", "predict.glmnetformula"), envir = .GlobalEnv)
+clusterExport(cl, varlist = list("expit", "SCL.binary"), envir = .GlobalEnv)
 
 # parallel computing for sample size n=30,100,500,1000
 clusterSetRNGStream(cl, 111)
@@ -150,6 +154,7 @@ system.time({
 stopCluster(cl)
 
 # extract results
+# extract value functions
 v.SCL.linear.40 <- array(0, c(times, 4))
 v.SCL.linear.50 <- array(0, c(times, 4))
 v.SCL.linear.60 <- array(0, c(times, 4))
@@ -157,6 +162,11 @@ v.SCL.linear.60 <- array(0, c(times, 4))
 v.wang.40 <- array(0, c(times, 4))
 v.wang.50 <- array(0, c(times, 4))
 v.wang.60 <- array(0, c(times, 4))
+
+# extract hatQ{Y(hat{d})}
+hatQ.wang.40 <- array(0, c(times, 4))
+hatQ.wang.50 <- array(0, c(times, 4))
+hatQ.wang.60 <- array(0, c(times, 4))
 
 for (i in 1:times) {
   v.SCL.linear.40[i, 1] <- res30[[i]]$v.40[1]
@@ -190,4 +200,20 @@ for (i in 1:times) {
   v.wang.40[i, 4] <- res1000[[i]]$v.40[2]
   v.wang.50[i, 4] <- res1000[[i]]$v.50[2]
   v.wang.60[i, 4] <- res1000[[i]]$v.60[2]
+
+  hatQ.wang.40[i, 1] <- res30[[i]]$hatQ.wang.40
+  hatQ.wang.50[i, 1] <- res30[[i]]$hatQ.wang.50
+  hatQ.wang.60[i, 1] <- res30[[i]]$hatQ.wang.60
+
+  hatQ.wang.40[i, 2] <- res100[[i]]$hatQ.wang.40
+  hatQ.wang.50[i, 2] <- res100[[i]]$hatQ.wang.50
+  hatQ.wang.60[i, 2] <- res100[[i]]$hatQ.wang.60
+
+  hatQ.wang.40[i, 3] <- res500[[i]]$hatQ.wang.40
+  hatQ.wang.50[i, 3] <- res500[[i]]$hatQ.wang.50
+  hatQ.wang.60[i, 3] <- res500[[i]]$hatQ.wang.60
+
+  hatQ.wang.40[i, 4] <- res1000[[i]]$hatQ.wang.40
+  hatQ.wang.50[i, 4] <- res1000[[i]]$hatQ.wang.50
+  hatQ.wang.60[i, 4] <- res1000[[i]]$hatQ.wang.60
 }

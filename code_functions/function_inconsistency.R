@@ -142,11 +142,3 @@ opt.reg <- function(q) {
 
   return(as.numeric((S1 - S0) > 0))
 }
-
-### A prediction function for glmnetformula objects
-### Input the glmnetformula object and new data to predict.
-### Output the predicted values.
-predict.glmnetformula <- function(object, new_data, type="response", ...) {
-  X_new <- model.matrix(object$formula, new_data)[, -1]
-  predict(object$fit, newx = X_new, type= type, ...)
-}
