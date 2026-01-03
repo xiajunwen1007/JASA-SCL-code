@@ -369,7 +369,7 @@ system.time({
 stopCluster(cl)
 
 # extract results
-# value funtion and misclassification rates
+# value function and misclassification rates
 case2.mianresult.SCL.linear <- array(0, dim = c(times, 4))
 case2.mianresult.SCL.gaussian <- array(0, dim = c(times, 4))
 case2.mianresult.QIQ <- array(0, dim = c(times, 4))

@@ -154,7 +154,7 @@ system.time({
 stopCluster(cl)
 
 # extract results
-# value funtion and misclassification rates
+# value function and misclassification rates
 case3.SCL.linear <- array(0, dim = c(times, 6))
 case3.SCL.gaussian <- array(0, dim = c(times, 6))
 

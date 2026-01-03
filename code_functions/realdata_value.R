@@ -173,7 +173,7 @@ value.results <- foreach(i = 1:times, .combine = "rbind", .packages = c("glmnet"
 
 stopCluster(cl)
 
-# extract the value funtion 
+# extract the value function 
 realdata.value.SCL.linear <- array(0, dim = c(times, 3))
 realdata.value.SCL.gaussian <- array(0, dim = c(times, 3))
 realdata.value.QIQ <- array(0, dim = c(times, 3))

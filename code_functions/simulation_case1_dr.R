@@ -253,7 +253,7 @@ system.time({
 stopCluster(cl)
 
 # extract results
-# value funtion and misclassification rates
+# value function and misclassification rates
 case1.SCL.linear.correctcorrect <- array(0, dim = c(times, 4))
 case1.SCL.gaussian.correctcorrect <- array(0, dim = c(times, 4))
 
