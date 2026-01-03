@@ -17,17 +17,17 @@ source("./code_functions/simulation_case3.R")
 
 # output results of Table 1 in the main paper
 mianresult_list <- list(
-  "case1.true.quantile.OTR"= matrix(c(case1.q.25, NA, case1.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case1.true.quantile.OTR"= matrix(c(case1.q.25, 0, case1.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case1.SCL.linear" = case1.mianresult.SCL.linear,
   "case1.SCL.gaussian" = case1.mianresult.SCL.gaussian,
   "case1.wang" = case1.mianresult.wang,
   "case1.QIQ" = case1.mianresult.QIQ,
-  "case2.true.quantile.OTRs"= matrix(c(case2.q.25, NA, case2.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case2.true.quantile.OTRs"= matrix(c(case2.q.25, 0, case2.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case2.SCL.linear" = case2.mianresult.SCL.linear,
   "case2.SCL.gaussian" = case2.mianresult.SCL.gaussian,
   "case2.wang" = case2.mianresult.wang,
   "case2.QIQ" = case2.mianresult.QIQ,
-  "case3.true.quantile.OTRs"= matrix(c(case3.q.25, NA, case3.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case3.true.quantile.OTRs"= matrix(c(case3.q.25, 0, case3.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case3.SCL.linear" = case3.mianresult.SCL.linear,
   "case3.SCL.gaussian" = case3.mianresult.SCL.gaussian,
   "case3.wang" = case3.mianresult.wang,
@@ -245,17 +245,17 @@ cat(kable(result_table_compact, format = "simple", caption = "Table S7: True and
 
 # output table s8
 mianresult_list <- list(
-  "case1.true.quantile.OTR"= matrix(c(case1.q.25, NA, case1.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case1.true.quantile.OTR"= matrix(c(case1.q.25, 0, case1.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case1.SCL.linear.soft" = case1.mianresult.SCL.linear,
   "case1.SCL.linear.hard" = case1.mianresult.SCL.linear.hard,
   "case1.SCL.gaussian.soft" = case1.mianresult.SCL.gaussian,
   "case1.SCL.gaussian.hard" = case1.mianresult.SCL.gaussian.hard,
-  "case2.true.quantile.OTR"= matrix(c(case2.q.25, NA, case2.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case2.true.quantile.OTR"= matrix(c(case2.q.25, 0, case2.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case2.SCL.linear.soft" = case2.mianresult.SCL.linear,
   "case2.SCL.linear.hard" = case2.mianresult.SCL.linear.hard,
   "case2.SCL.gaussian.soft" = case2.mianresult.SCL.gaussian,
   "case2.SCL.gaussian.hard" = case2.mianresult.SCL.gaussian.hard,
-  "case3.true.quantile.OTR"= matrix(c(case3.q.25, NA, case3.q.50, NA), nrow = times, ncol = 4, byrow = TRUE),
+  "case3.true.quantile.OTR"= matrix(c(case3.q.25, 0, case3.q.50, 0), nrow = times, ncol = 4, byrow = TRUE),
   "case3.SCL.linear.soft" = case3.mianresult.SCL.linear,
   "case3.SCL.linear.hard" = case3.mianresult.SCL.linear.hard,
   "case3.SCL.gaussian.soft" = case3.mianresult.SCL.gaussian,

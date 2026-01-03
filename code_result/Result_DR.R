@@ -19,8 +19,8 @@ source("./code_functions/simulation_case3_dr.R")
 # generate Tables S11, S12, S13 in the supplementary material, respectively.
 for (i in 1:3){  
   mianresult_list <- list(
-    "True OTR" = matrix(c(eval(parse(text = paste0("case", i, ".q.25"))), NA, 
-                             eval(parse(text = paste0("case", i, ".q.50"))), NA), nrow = times, ncol = 4, byrow = TRUE),
+    "True OTR" = matrix(c(eval(parse(text = paste0("case", i, ".q.25"))), 0, 
+                             eval(parse(text = paste0("case", i, ".q.50"))), 0), nrow = times, ncol = 4, byrow = TRUE),
     "SCL-Linear-correctcorrect" = eval(parse(text = paste0("case", i, ".SCL.linear.correctcorrect"))),
     "SCL-Gaussian-correctcorrect" = eval(parse(text = paste0("case", i, ".SCL.gaussian.correctcorrect"))),
     "SCL-Linear-incorrect2correct" = eval(parse(text = paste0("case", i, ".SCL.linear.incorrect2correct"))),
@@ -70,8 +70,8 @@ for (i in 1:3){
 # generate Tables S14, S15, S16 in the supplementary material, respectively.
 for (i in 1:3){  
   mianresult_list <- list(
-    "True OTR" = matrix(c(eval(parse(text = paste0("case", i, ".q.25"))), NA, 
-                             eval(parse(text = paste0("case", i, ".q.50"))), NA), nrow = times, ncol = 4, byrow = TRUE),
+    "True OTR" = matrix(c(eval(parse(text = paste0("case", i, ".q.25"))), 0, 
+                             eval(parse(text = paste0("case", i, ".q.50"))), 0), nrow = times, ncol = 4, byrow = TRUE),
     "SCL-Linear-ps1" = eval(parse(text = paste0("case", i, ".SCL.linear.incorrect1correct"))),
     "SCL-Gaussian-ps1" = eval(parse(text = paste0("case", i, ".SCL.gaussian.incorrect1correct"))),
     "SCL-Linear-ps2" = eval(parse(text = paste0("case", i, ".SCL.linear.correctcorrect"))),

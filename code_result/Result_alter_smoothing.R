@@ -13,7 +13,7 @@ source("./code_functions/simulation_alter_smoothing.R")
 
 # output results of Table S9 in the supplementary material
 mianresult_list <- list(
-    "True OTR"= matrix(c(case3.q.25, case3.q.25.beta, NA), nrow = times, ncol = 3, byrow = TRUE),
+    "True OTR"= matrix(c(case3.q.25, case3.q.25.beta, 0), nrow = times, ncol = 3, byrow = TRUE),
     "SCL-Linear" = case3.SCL.linear[,1:3],
     "SCL-Linear-beta" = case3.SCL.linear.beta[,1:3],
     "SCL-Gaussian" = case3.SCL.gaussian[,1:3],
@@ -50,7 +50,7 @@ cat(kable(result_table_compact, format = "simple", caption = "Table S9: Mean of 
 
 # output results of Table S10 in the supplementary material
 mianresult_list <- list(
-    "True OTR"= matrix(c(case3.q.50, case3.q.50.beta, NA), nrow = times, ncol = 3, byrow = TRUE),
+    "True OTR"= matrix(c(case3.q.50, case3.q.50.beta, 0), nrow = times, ncol = 3, byrow = TRUE),
     "SCL-Linear" = case3.SCL.linear[,4:6],
     "SCL-Linear-beta" = case3.SCL.linear.beta[,4:6],
     "SCL-Gaussian" = case3.SCL.gaussian[,4:6],

@@ -15,7 +15,7 @@ cat("\nProportion of times Wang's method finds the global optimum:\n", mean(flag
 
 # output value and MR of gridsearch method and wang's method
 mianresult_list <- list(
-    "True OTR"= matrix(c(q.50, NA), nrow = times, ncol = 2, byrow = TRUE),
+    "True OTR"= matrix(c(q.50, 0), nrow = times, ncol = 2, byrow = TRUE),
     "Gridsearch method" = gridsearch.50,
     "Wang" = wang.50
 )
