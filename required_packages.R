@@ -1,5 +1,5 @@
 # install.packages("remotes")
-# library(remotes)
+library(remotes)
 install_version("cowplot", "1.1.3")
 install_version("doParallel", "1.0.17")
 install_version("dplyr", "1.1.4")
