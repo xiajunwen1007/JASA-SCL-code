@@ -1,6 +1,6 @@
 # SCL: Successive classification learning for estimating quantile optimal treatment regimes
 
-This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will apear in the `output/` folder after running the scripts.
+This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts.
 
 ## Summary of the files
 - `required_packages.R`: script to install all the necessary R packages to reproduce our results

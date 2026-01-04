@@ -41,7 +41,7 @@ If box above is checked and if no simulated/synthetic data files are provided by
 
 ## Abstract
 
-We utilize data from the AIDS Clinical Trials Group (ACTG) 175 study, a randomized clinical trial designed to compare monotherapy with zidovudine or didanosine against combination therapy consisting of zidovudine with didanosine or zidovudine with zalcitabine among adults infected with human immunodeficiency virus type I whose CD4 T-cell counts ranged between 200 and 500 per cubic millimeter.
+We utilize data from the AIDS Clinical Trials Group (ACTG) 175 study, a randomized clinical trial designed to compare monotherapy with zidovudine or didanosine against combination therapy consisting of zidovudine with didanosine or zidovudine with zalcitabine among adults infected with human immunodeficiency virus type I.
 <!--
 Provide a short (< 100 words), high-level description of the data
 -->
@@ -110,7 +110,7 @@ OPTIONAL: Provide any additional details that would be helpful in understanding 
 
 ## Abstract
 
-We provide scripts to reproduce all the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will apear in the `output/` folder after running the scripts. More details can be found in the `Readme.md` file in the supplementary material.
+We provide scripts to reproduce all the simulation and real-data results in the supplementary material and at \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/}. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts. More details can be found in the `Readme.md` file.
 <!--
 Provide a short (< 100 words), high-level description of the code. If necessary, more details can be provided in files that accompany the code. If no code is provided, please state this and say why (e.g., if the paper contains no computational work).
 -->
@@ -172,7 +172,7 @@ R version 4.3.1.
 - speff2trial_1.0.5
 - tidyr_1.3.1
 - WeightSVM_1.7.11
-- 
+  
 <!--
 Include version numbers (e.g., version numbers for any R or Python packages used)
 -->
@@ -231,7 +231,7 @@ The workflow is available:
 Check all that apply, and in the case of a Git repository include unique identifier, such as specific commit ID, branch, release, or tag.
 -->
 - [x] As part of the paper’s supplementary material.
-- [ ] In this Git repository:
+- [x] In this Git repository: \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/}.
 - [ ] Other (please specify):
 
 <!--
@@ -253,7 +253,7 @@ Check all that apply
 
 ### Instructions
 
-See `Readme.md` file in the supplementary material.
+See `Readme.md` file in the supplementary material or at \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/} for detailed instructions.
 <!--
 Describe how to use the materials provided to reproduce analyses in the manuscript. Additional details can be provided in file(s) accompanying the reproducibility materials. If no workflow is provided, please state this and say why (e.g., if the paper contains no computational work).
 -->
