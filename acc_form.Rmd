@@ -172,6 +172,7 @@ R version 4.3.1.
 - speff2trial_1.0.5
 - tidyr_1.3.1
 - WeightSVM_1.7.11
+- survival_3.5.5
   
 <!--
 Include version numbers (e.g., version numbers for any R or Python packages used)

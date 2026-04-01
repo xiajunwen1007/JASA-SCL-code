@@ -62,6 +62,7 @@ The necessary packages to reproduce our results are as follows. You can run the 
 - speff2trial_1.0.5
 - tidyr_1.3.1
 - WeightSVM_1.7.11
+- survival_3.5.5
 
 ## How to replicate our simulation and real-data results
 Execute:
