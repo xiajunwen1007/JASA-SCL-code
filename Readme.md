@@ -1,6 +1,6 @@
 # SCL: Successive classification learning for estimating quantile optimal treatment regimes
 
-This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will apear in the `output/` folder after running the scripts.
+This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts.
 
 ## Summary of the files
 - `required_packages.R`: script to install all the necessary R packages to reproduce our results
@@ -16,7 +16,7 @@ This directory contains all scripts to reproduce the simulation and real-data re
   - `Result_smooth_survival.R` produces plot of the survival functions and the smooth survival functions, i.e., Figure 2 in the main paper.  
   - `Result_kernels.R` produces simulation results with different kernel choices, i.e., Tables S17 and S18 in the supplementary material.  
   - `Result_survival.R` produces simulation results for survival data, i.e., Tables S19 and Figure S8 in the supplementary material.  
-- `code_functions/`: folder containing all the functions used in the simulation and real-data.
+- `code_functions/`: folder containing all the functions used in the simulation and real-data analysis.
   - `function_main.R`: functions including our SCL method, the competing methods, and auxiliary functions
   - `function_inconsistency.R`: functions for the inconsistency issue of Wang's method
   - `function_nonconvexity.R`: functions for the nonconvexity issue of Wang's method
