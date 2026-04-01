@@ -27,7 +27,7 @@ cl <- makeCluster(clnum)
 registerDoParallel(cl)
 
 fold=5
-ri.results <- foreach(i = 1:times, .combine = "rbind", .packages = c("glmnet","MASS","WeightSVM", "quantoptr"), .export = c("predict.QIQlearningcontinuous", "predict.glmnetformula")) %dopar% { 
+dc.results <- foreach(i = 1:times, .combine = "rbind", .packages = c("glmnet","MASS","WeightSVM", "quantoptr"), .export = c("predict.QIQlearningcontinuous", "predict.glmnetformula")) %dopar% { 
   #construct training and testing data
   set.seed(i)
   index <- sample(1:nrow(data_real), nrow(data_real), replace = FALSE)
@@ -242,35 +242,35 @@ ri.results <- foreach(i = 1:times, .combine = "rbind", .packages = c("glmnet","M
     treat.wang.75.2<- x.test %*% res.wang.75.2$coefficients>0
   }
 
-  # calculate the rand index for competing methods
-  ri.SCL.linear.25 <- sum(treat.SCL.linear.25.1 == treat.SCL.linear.25.2)/length(y.test)
-  ri.SCL.linear.50 <- sum(treat.SCL.linear.50.1 == treat.SCL.linear.50.2)/length(y.test)
-  ri.SCL.linear.75 <- sum(treat.SCL.linear.75.1 == treat.SCL.linear.75.2)/length(y.test)
+  # calculate the decision concordance for competing methods
+  dc.SCL.linear.25 <- sum(treat.SCL.linear.25.1 == treat.SCL.linear.25.2)/length(y.test)
+  dc.SCL.linear.50 <- sum(treat.SCL.linear.50.1 == treat.SCL.linear.50.2)/length(y.test)
+  dc.SCL.linear.75 <- sum(treat.SCL.linear.75.1 == treat.SCL.linear.75.2)/length(y.test)
 
-  ri.SCL.gaussian.25 <- sum(treat.SCL.gaussian.25.1 == treat.SCL.gaussian.25.2)/length(y.test)
-  ri.SCL.gaussian.50 <- sum(treat.SCL.gaussian.50.1 == treat.SCL.gaussian.50.2)/length(y.test)
-  ri.SCL.gaussian.75 <- sum(treat.SCL.gaussian.75.1 == treat.SCL.gaussian.75.2)/length(y.test)
+  dc.SCL.gaussian.25 <- sum(treat.SCL.gaussian.25.1 == treat.SCL.gaussian.25.2)/length(y.test)
+  dc.SCL.gaussian.50 <- sum(treat.SCL.gaussian.50.1 == treat.SCL.gaussian.50.2)/length(y.test)
+  dc.SCL.gaussian.75 <- sum(treat.SCL.gaussian.75.1 == treat.SCL.gaussian.75.2)/length(y.test)
 
-  ri.QIQ.25 <- sum(treat.QIQ.25.1 == treat.QIQ.25.2)/length(y.test)
-  ri.QIQ.50 <- sum(treat.QIQ.50.1 == treat.QIQ.50.2)/length(y.test)
-  ri.QIQ.75 <- sum(treat.QIQ.75.1 == treat.QIQ.75.2)/length(y.test)
+  dc.QIQ.25 <- sum(treat.QIQ.25.1 == treat.QIQ.25.2)/length(y.test)
+  dc.QIQ.50 <- sum(treat.QIQ.50.1 == treat.QIQ.50.2)/length(y.test)
+  dc.QIQ.75 <- sum(treat.QIQ.75.1 == treat.QIQ.75.2)/length(y.test)
 
-  ri.wang.25 <- sum(treat.wang.25.1 == treat.wang.25.2)/length(y.test)
-  ri.wang.50 <- sum(treat.wang.50.1 == treat.wang.50.2)/length(y.test)
-  ri.wang.75 <- sum(treat.wang.75.1 == treat.wang.75.2)/length(y.test)
+  dc.wang.25 <- sum(treat.wang.25.1 == treat.wang.25.2)/length(y.test)
+  dc.wang.50 <- sum(treat.wang.50.1 == treat.wang.50.2)/length(y.test)
+  dc.wang.75 <- sum(treat.wang.75.1 == treat.wang.75.2)/length(y.test)
 
-  return(c("SCL.linear.25"=unname(ri.SCL.linear.25),
-           "SCL.linear.50"=unname(ri.SCL.linear.50),
-           "SCL.linear.75"=unname(ri.SCL.linear.75),
-           "SCL.gaussian.25"=unname(ri.SCL.gaussian.25),
-           "SCL.gaussian.50"=unname(ri.SCL.gaussian.50),
-           "SCL.gaussian.75"=unname(ri.SCL.gaussian.75),
-           "QIQ.25"=unname(ri.QIQ.25),
-           "QIQ.50"=unname(ri.QIQ.50),
-           "QIQ.75"=unname(ri.QIQ.75),
-           "wang.25"=unname(ri.wang.25),
-           "wang.50"=unname(ri.wang.50),
-           "wang.75"=unname(ri.wang.75)
+  return(c("SCL.linear.25"=unname(dc.SCL.linear.25),
+           "SCL.linear.50"=unname(dc.SCL.linear.50),
+           "SCL.linear.75"=unname(dc.SCL.linear.75),
+           "SCL.gaussian.25"=unname(dc.SCL.gaussian.25),
+           "SCL.gaussian.50"=unname(dc.SCL.gaussian.50),
+           "SCL.gaussian.75"=unname(dc.SCL.gaussian.75),
+           "QIQ.25"=unname(dc.QIQ.25),
+           "QIQ.50"=unname(dc.QIQ.50),
+           "QIQ.75"=unname(dc.QIQ.75),
+           "wang.25"=unname(dc.wang.25),
+           "wang.50"=unname(dc.wang.50),
+           "wang.75"=unname(dc.wang.75)
           )
          )
 }
@@ -278,14 +278,14 @@ ri.results <- foreach(i = 1:times, .combine = "rbind", .packages = c("glmnet","M
 stopCluster(cl)
 
 # extract the rand index 
-realdata.ri.SCL.linear <- array(0, dim = c(times, 3))
-realdata.ri.SCL.gaussian <- array(0, dim = c(times, 3))
-realdata.ri.QIQ <- array(0, dim = c(times, 3))
-realdata.ri.wang <- array(0, dim = c(times, 3))
+realdata.dc.SCL.linear <- array(0, dim = c(times, 3))
+realdata.dc.SCL.gaussian <- array(0, dim = c(times, 3))
+realdata.dc.QIQ <- array(0, dim = c(times, 3))
+realdata.dc.wang <- array(0, dim = c(times, 3))
 
 for (j in 1:times) {
-  realdata.ri.SCL.linear[j, ] <- ri.results[j, c("SCL.linear.25","SCL.linear.50","SCL.linear.75")]
-  realdata.ri.SCL.gaussian[j, ] <- ri.results[j, c("SCL.gaussian.25","SCL.gaussian.50","SCL.gaussian.75")]
-  realdata.ri.QIQ[j, ] <- ri.results[j, c("QIQ.25","QIQ.50","QIQ.75")]
-  realdata.ri.wang[j, ] <- ri.results[j, c("wang.25","wang.50","wang.75")]
+  realdata.dc.SCL.linear[j, ] <- dc.results[j, c("SCL.linear.25","SCL.linear.50","SCL.linear.75")]
+  realdata.dc.SCL.gaussian[j, ] <- dc.results[j, c("SCL.gaussian.25","SCL.gaussian.50","SCL.gaussian.75")]
+  realdata.dc.QIQ[j, ] <- dc.results[j, c("QIQ.25","QIQ.50","QIQ.75")]
+  realdata.dc.wang[j, ] <- dc.results[j, c("wang.25","wang.50","wang.75")]
 }

@@ -1,21 +1,27 @@
 # SCL: Successive classification learning for estimating quantile optimal treatment regimes
 
-This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts.
+This directory contains all scripts to reproduce the simulation and real-data results. The entry point is `Run_all.R`, which sets the working directory and sequentially sources the individual result scripts. All the tables and figures in the main paper and the supplementary material will apear in the `output/` folder after running the scripts.
 
 ## Summary of the files
 - `required_packages.R`: script to install all the necessary R packages to reproduce our results
 - `Run_all.R`: the main script to run all the result scripts
-- `code_result/`: folder containing all the individual result scripts for simulation and real-data analysis
-  - `Result_main_500.R`: main simulation results with n=500 and d=2
-  - `Result_main_diff_np.R`: main simulation results with different (n, d) combinations, including (250, 2), (1000, 2), and (500, 10)
-  - `Result_inconsistency.R`: simulation results on the inconsistency issue of Wang's method
-  - `Result_alter_smoothing.R`: simulation results with alternative smoothing techniques
-  - `Result_DR.R`: simulation results about the doubly robust property of our SCL method
-  - `Result_nonconvexity.R`: simulation results for nonconvexity issue of Wang's method
-  - `Result_realdata.R`: real-data analysis results on the AIDS study data
-  - `Result_smooth_survival.R`: plot of the survival functions and the smooth survival functions.
+- `code_result/`: folder containing all the individual result scripts for simulation and real-data analysis  
+  - `Result_main_500.R` produces main simulation results with sample size n=500 and covariates dimension d=2, i.e., Table 1 in the main paper, Tables S4–S8 in the supplementary material, and Figures S2–S7 in the supplementary material.  
+  - `Result_main_diff_np.R` produces simulation results with different (n, d) combinations, including (250, 2), (1000, 2), and (500, 10), i.e., Tables S1–S3 in the supplementary material.  
+  - `Result_inconsistency.R` produces simulation results on the inconsistency issue of Wang's method, i.e., Figure 1 in the main paper and Figure S1 in the supplementary material.  
+  - `Result_alter_smoothing.R` produces simulation results with alternative smoothing techniques, i.e., Tables S9 and S10 in the supplementary material.  
+  - `Result_DR.R` produces simulation results about the doubly robust property of our SCL method, i.e., Tables S11–S16 in the supplementary material.  
+  - `Result_nonconvexity.R` produces simulation results for nonconvexity issue of Wang's method stated in Section S1.1 in the supplementary material.  
+  - `Result_realdata.R` produces real-data analysis results on the AIDS study data, i.e., Tables 2 and 3 in the main paper.  
+  - `Result_smooth_survival.R` produces plot of the survival functions and the smooth survival functions, i.e., Figure 2 in the main paper.  
+  - `Result_kernels.R` produces simulation results with different kernel choices, i.e., Tables S17 and S18 in the supplementary material.  
+  - `Result_survival.R` produces simulation results for survival data, i.e., Tables S19 and Figure S8 in the supplementary material.  
 - `code_functions/`: folder containing all the functions used in the simulation and real-data.
   - `function_main.R`: functions including our SCL method, the competing methods, and auxiliary functions
+  - `function_inconsistency.R`: functions for the inconsistency issue of Wang's method
+  - `function_nonconvexity.R`: functions for the nonconvexity issue of Wang's method
+  - `function_kernel.R`: functions to test the robustness of our SCL method with different kernel choices
+  - `function_survival.R`: functions to implement our SCL method for survival data
   - `simulation_case1.R`: functions to generate data for case 1 in the main paper and execute the competing methods
   - `simulation_case2.R`: functions to generate data for case 2 in the main paper and execute the competing methods
   - `simulation_case3.R`: functions to generate data for case 3 in the main paper and execute the competing methods
@@ -24,9 +30,11 @@ This directory contains all scripts to reproduce the simulation and real-data re
   - `simulation_case3_dr.R`: functions to test the doubly robust property of our SCL method in case 3
   - `simulation_inconsistency.R`: functions on the inconsistency issue of Wang's method
   - `simulation_nonconvexity.R`: functions on the nonconvexity issue of Wang's method
+  - `simulation_kernel.R`: functions to generate data and test the robustness of our SCL method with different kernel choices
+  - `simulation_survival.R`: functions to generate survival data and test our SCL method for survival data
+  - `simulation_alter_smoothing.R`: functions to test the alternative smoothing techniques for discrete outcomes for our SCL method
   - `realdata_value.R`: functions to clean the AIDS study data (real data) and implement the cross-validated to evaluate competing methods in value function 
-  - `realdata_RI.R`: functions to clean the AIDS study data (real data) and implement the cross-validated to evaluate competing methods in rand index (RI)
-- `code_functions/`: folder containing all the functions used in the result scripts
+  - `realdata_DC.R`: functions to clean the AIDS study data (real data) and implement the cross-validated to evaluate competing methods in decision concordance (DC)
 - `output/`: folder to save all the tables and figures in the main paper and the supplementary material
 
 ## Prerequisites
@@ -56,18 +64,22 @@ The necessary packages to reproduce our results are as follows. You can run the 
 - WeightSVM_1.7.11
 
 ## How to replicate our simulation and real-data results
-1. Change the directory `Documents/quantile_optimal_regime/submission/` in the script `Run_all.R` to your local path.
-2. Execute:
+Execute:
 	```r
-	source("./Run_all_simulation.R")
+	source("./Run_all.R")
 	```
-	This will set the working directory and run:
-	- `code_result/Result_main_500.R`
-	- `code_result/Result_main_diff_np.R`
-	- `code_result/Result_alter_smoothing.R`
-	- `code_result/Result_inconsistency.R`
-	- `code_result/Result_DR.R`
-	- `code_result/Result_nonconvexity.R`
-	- `code_result/Result_realdata.R`
-	- `code_result/Result_smooth_survival.R`
-3. All the tables and figures will be saved in the `output/` folder.
+
+This will run:
+
+  - `code_result/Result_main_500.R`
+  - `code_result/Result_main_diff_np.R`
+  - `code_result/Result_alter_smoothing.R`
+  - `code_result/Result_inconsistency.R`
+  - `code_result/Result_DR.R`
+  - `code_result/Result_nonconvexity.R`
+  - `code_result/Result_realdata.R`
+  - `code_result/Result_smooth_survival.R`
+  - `code_result/Result_kernels.R`
+  - `code_result/Result_survival.R`
+
+All the tables and figures will be saved in the `output/` folder.
