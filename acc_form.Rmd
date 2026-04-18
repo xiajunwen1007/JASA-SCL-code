@@ -110,7 +110,7 @@ OPTIONAL: Provide any additional details that would be helpful in understanding 
 
 ## Abstract
 
-We provide scripts to reproduce all the simulation and real-data results in the supplementary material and at \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/}. The entry point is `Run_all.R`, which sequentially sources all the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts. More details can be found in the `Readme.md` file.
+We provide scripts to reproduce all the simulation and real-data results in the supplementary material and at \url{https://github.com/xiajunwen1007/JASA-SCL-code}. The entry point is `Run_all.R`, which sequentially sources all the individual result scripts. All the tables and figures in the main paper and the supplementary material will appear in the `output/` folder after running the scripts. More details can be found in the `Readme.md` file.
 <!--
 Provide a short (< 100 words), high-level description of the code. If necessary, more details can be provided in files that accompany the code. If no code is provided, please state this and say why (e.g., if the paper contains no computational work).
 -->
@@ -232,7 +232,7 @@ The workflow is available:
 Check all that apply, and in the case of a Git repository include unique identifier, such as specific commit ID, branch, release, or tag.
 -->
 - [x] As part of the paper’s supplementary material.
-- [x] In this Git repository: \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/}.
+- [x] In this Git repository: \url{https://github.com/xiajunwen1007/JASA-SCL-code}.
 - [ ] Other (please specify):
 
 <!--
@@ -254,7 +254,7 @@ Check all that apply
 
 ### Instructions
 
-See `Readme.md` file in the supplementary material or at \url{https://anonymous.4open.science/r/JASA-SCL-code-33DF/} for detailed instructions.
+See `Readme.md` file in the supplementary material or at \url{https://github.com/xiajunwen1007/JASA-SCL-code} for detailed instructions.
 <!--
 Describe how to use the materials provided to reproduce analyses in the manuscript. Additional details can be provided in file(s) accompanying the reproducibility materials. If no workflow is provided, please state this and say why (e.g., if the paper contains no computational work).
 -->
